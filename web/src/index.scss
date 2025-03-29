@@ -133,8 +133,6 @@ button:active {
   justify-content: center;
   align-items: center;
   height: 100%;
-
-  gap: 20px;
 }
 
 .inventory-control {
@@ -143,26 +141,78 @@ button:active {
   .inventory-control-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 18px;
     justify-content: center;
     align-items: center;
   }
+  .inventory-floating-label {
+    position: absolute;
+    left: 8px;
+    top: 32%;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+    z-index: 2;
+    &:hover {
+      color: white;
+    }
+  }
 
-  .inventory-control-input {
-    transition: 200ms;
-    padding: 16px 4px;
+  .inventory-control-input-wrapper {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(0,0,0,0.08));
+    backdrop-filter: blur(19px);
     border-radius: 8px;
+    padding: 4px 4px;
+    border: 2.33px solid rgba(255, 255, 255, 0.675);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    transition: all 100ms ease-in-out;
+  
+    &:focus-within {
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+  }
+  
+  .inventory-control-input-prefix {
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  
+  .inventory-control-input {
+    flex: 1;
+    border: none;
+    outline: none;
     font-family: $mainFont;
     font-size: 16px;
+    font-weight: 600;
+    color: $textColor;
+    background-color: transparent;
+    padding: 12px 4px;
+    border-radius: 8px;
+    transition: all 150ms ease;
     text-align: center;
-    border: none;
-    color: #fff;
-    background-color: rgba(255, 255, 255, 0.507);
-    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05);
-    &:focus-within {
-      background-color: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
+      &::placeholder {
+        color: transparent;
+      }
+    
+      &:hover {
+        color: white;
+      }
+    
+      &:focus {
+        color: white;
+      }
+    
+      &:active {
+        transform: scale(0.97);
+      }
     }
+  
   }
 
   .inventory-control-button {
@@ -174,7 +224,7 @@ button:active {
     backdrop-filter: blur(6px);
     background-color: $secondaryColor;
     transition: 200ms;
-    padding: 12px 8px;
+    padding: 12px 4px;
     border-radius: 8px;
     border: 1px solid rgba(255,255,255,0.05);
     box-shadow: 0 2px 6px rgba(0,0,0,0.3);
@@ -185,7 +235,6 @@ button:active {
     &:active {
       transform: scale(0.97);
     }
-  }
 }
 
 .useful-controls-dialog {
@@ -239,7 +288,19 @@ button:active {
 .divider {
   width: 100%;
   height: 1px;
-  background-color: rgba(255, 255, 255, 0.12);
+  background-color: rgba(255, 255, 255, 0.65);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
 }
 
 .useful-controls-button {
@@ -271,9 +332,6 @@ button:active {
   color: grey !important;
 }
 
-// Dialog is used fro useful controls window
-
-
 // inventory grids
 .inventory-grid-wrapper {
   display: flex;
@@ -282,16 +340,37 @@ button:active {
 }
 .inventory-grid-header-wrapper {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  p {
-    font-size: 16px;
-  }
+  flex-direction: column;
+  align-items: flex-end; // Aligns text + bar to the left
+  gap: 4px;
 }
-
+.inventory-owner-wrapper {
+  align-items: flex-start;
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+}
+.inventory-weight-text {
+  font-size: 14px;
+  font-weight: 400;
+  color: #fff;
+}
+.inventory-grid-header {
+  display: flex;
+  flex-direction: column;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+.inventory-owner-label {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  text-align: left;
+}
 .inventory-grid-container {
   display: grid;
-  padding: 18px;
+  padding: 6px;
+  margin-top: 0;
   border-radius: 8px;
   box-shadow: inset 0 0 2px rgba(255,255,255,0.05);
   height: $containerSize;
@@ -555,14 +634,21 @@ button:active {
 }
 
 .weight-bar {
+  width: min(100%, 466px);
   background: rgba(0, 0, 0, 0.4);
-  border-radius: 6px;
+  border-radius: 8px;
   overflow: hidden;
-  border: 1px inset rgba(255, 255, 255, 0.05);
-  height: 12px;
+  border: 1.33px inset rgba(255, 255, 255, 0.05);
+  height: 1.3vh;
   position: relative;
 }
 
+.weight-bar-wrapper {
+  margin-top: 4px; // Reduce vertical spacing
+  margin-bottom: 4px; // Optional: shrink gap before grid starts
+  display: flex;
+  justify-content: center; // Align center horizontally
+}
 .durability-bar {
   background: rgba(0, 0, 0, 0.4);
   overflow: hidden;
@@ -584,9 +670,9 @@ button:active {
 }
 
 // Subtle glow when nearly full
-.weight-bar-fill.full,
-.durability-bar-fill.full {
+.weight-bar-fill.full {
   box-shadow: 0 0 6px rgba(255, 64, 64, 0.3);
+  animation: weightPulse 1s infinite alternate ease-in-out;
 }
 
 // Subtle red pulse when dangerously low
@@ -595,6 +681,21 @@ button:active {
   box-shadow: 0 0 6px rgba(0, 255, 128, 0.25);
 }
 
+.durability-bar-fill.low {
+  box-shadow: 0 0 6px rgba(255, 0, 0, 0.25);
+}
+
+@keyframes weightPulse {
+  0% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(1.03);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
 
 
 

@@ -26,16 +26,31 @@ const InventoryGrid: React.FC<{ inventory: Inventory }> = ({ inventory }) => {
   return (
     <>
       <div className="inventory-grid-wrapper" style={{ pointerEvents: isBusy ? 'none' : 'auto' }}>
-        <div>
+        {/* <div>
           <div className="inventory-grid-header-wrapper">
-            <p>{inventory.label}</p>
             {inventory.maxWeight && (
-              <p>
-                {weight / 1000}/{inventory.maxWeight / 1000}kg
-              </p>
+              <div className="weight-bar-wrapper">
+                {(weight / 1000).toFixed(1)} / {(inventory.maxWeight / 1000).toFixed(1)} lb
+              </div>
             )}
           </div>
-          <WeightBar percent={inventory.maxWeight ? (weight / inventory.maxWeight) * 100 : 0} />
+          <div className="weight-bar-wrapper">
+            <WeightBar percent={inventory.maxWeight ? (weight / inventory.maxWeight) * 100 : 0} />
+          </div>
+          <p>{inventory.label}</p>
+        </div> */}
+        <div className="inventory-grid-header">
+          <p className="inventory-owner-label">{inventory.label}</p>
+          <div className="inventory-grid-header-wrapper">
+            <p className="inventory-weight-text">
+            {inventory.maxWeight && (
+              <div className="weight-bar-wrapper">
+                {(weight / 1000).toFixed(1)} / {(inventory.maxWeight / 1000).toFixed(1)} lb
+              </div>
+            )}
+            </p>
+            <WeightBar percent={inventory.maxWeight ? (weight / inventory.maxWeight) * 100 : 0} />
+          </div>
         </div>
         <div className="inventory-grid-container" ref={containerRef}>
           <>

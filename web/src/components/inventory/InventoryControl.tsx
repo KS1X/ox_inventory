@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDrop } from 'react-dnd';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { selectItemAmount, setItemAmount } from '../../store/inventory';
@@ -9,12 +9,15 @@ import { fetchNui } from '../../utils/fetchNui';
 import { Locale } from '../../store/locale';
 import UsefulControls from './UsefulControls';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHandHolding, faGift, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faPerson, faGift, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const InventoryControl: React.FC = () => {
   const itemAmount = useAppSelector(selectItemAmount);
   const dispatch = useAppDispatch();
   const [infoVisible, setInfoVisible] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [value, setValue] = useState(itemAmount);
 
   const [, use] = useDrop<DragSource, void, any>(() => ({
     accept: 'SLOT',
@@ -31,40 +34,64 @@ const InventoryControl: React.FC = () => {
   }));
 
   const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.target.valueAsNumber =
-      isNaN(event.target.valueAsNumber) || event.target.valueAsNumber < 0 ? 0 : Math.floor(event.target.valueAsNumber);
-    dispatch(setItemAmount(event.target.valueAsNumber));
+    const newVal = isNaN(event.target.valueAsNumber) || event.target.valueAsNumber < 0
+      ? 0
+      : Math.floor(event.target.valueAsNumber);
+    dispatch(setItemAmount(newVal));
+    setValue(newVal);
   };
 
   return (
     <>
       <UsefulControls infoVisible={infoVisible} setInfoVisible={setInfoVisible} />
+
       <div className="inventory-control">
         <div className="inventory-control-wrapper">
+        <div className="inventory-control-input-wrapper">
+          <label className="inventory-floating-label" htmlFor="inventory-input">
+            Item Qty.
+          </label>
           <input
+            id="inventory-input"
             className="inventory-control-input"
             type="number"
             defaultValue={itemAmount}
             onChange={inputHandler}
             min={0}
-            placeholder="Amount"
+            placeholder=" " // <-- critical for :placeholder-shown to work
             aria-label="Item amount"
           />
+        </div>
 
-          <button className="inventory-control-button" ref={use}>
-            <FontAwesomeIcon icon={faHandHolding} style={{ marginRight: '8px' }} />
-            {Locale.ui_use || 'Use'}
-          </button>
+          <motion.button
+            className="inventory-control-button"
+            ref={use}
+            whileTap={{ scale: 0.96 }}
+            whileHover={{ scale: 1.02 }}
+          >
+            <FontAwesomeIcon icon={faPerson} style={{ marginRight: '8px' }} />
+            {Locale.ui_use || 'Use Item'}
+          </motion.button>
 
-          <button className="inventory-control-button" ref={give}>
+          <motion.button
+            className="inventory-control-button"
+            ref={give}
+            whileTap={{ scale: 0.96 }}
+            whileHover={{ scale: 1.02 }}
+          >
             <FontAwesomeIcon icon={faGift} style={{ marginRight: '8px' }} />
-            {Locale.ui_give || 'Give'}
-          </button>
+            {Locale.ui_give || 'Give Item'}
+          </motion.button>
 
-          <button className="inventory-control-button" onClick={() => fetchNui('exit')}>
+          <motion.button
+            className="inventory-control-button"
+            onClick={() => fetchNui('exit')}
+            whileTap={{ scale: 0.96 }}
+            whileHover={{ scale: 1.02 }}
+          >
             <FontAwesomeIcon icon={faTimes} style={{ marginRight: '8px' }} />
-            {Locale.ui_close || 'Close'}
-          </button>
+            {Locale.ui_close || 'Close Inventory'}
+          </motion.button>
         </div>
       </div>
 
@@ -73,7 +100,6 @@ const InventoryControl: React.FC = () => {
           <FontAwesomeIcon icon={faInfoCircle} size="2x" />
         </button>
       </div>
-
     </>
   );
 };

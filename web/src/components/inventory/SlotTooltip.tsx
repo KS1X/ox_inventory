@@ -4,9 +4,10 @@ import { Items } from '../../store/items';
 import { Locale } from '../../store/locale';
 import ReactMarkdown from 'react-markdown';
 import { useAppSelector } from '../../store';
-import ClockIcon from '../utils/icons/ClockIcon';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getItemUrl } from '../../helpers';
 import Divider from '../utils/Divider';
+import { faClock } from '@fortawesome/free-solid-svg-icons';
 
 const SlotTooltip: React.ForwardRefRenderFunction<
   HTMLDivElement,
@@ -36,7 +37,7 @@ const SlotTooltip: React.ForwardRefRenderFunction<
             <p>{item.metadata?.label || itemData.label || item.name}</p>
             {inventoryType === 'crafting' ? (
               <div className="tooltip-crafting-duration">
-                <ClockIcon />
+                <FontAwesomeIcon icon={faClock} />
                 <p>{(item.duration !== undefined ? item.duration : 3000) / 1000}s</p>
               </div>
             ) : (
