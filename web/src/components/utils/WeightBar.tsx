@@ -20,7 +20,11 @@ const COLORS = {
   accentColor: [211, 84, 0], // Orange (Oragne)
 };
 
+// Removed from here and moved inside the WeightBar component
+
 const WeightBar: React.FC<{ percent: number; durability?: boolean }> = ({ percent, durability }) => {
+  const stateClass = percent <= 25 ? 'low' : percent >= 85 ? 'full' : '';
+
   const color = useMemo(
     () =>
       durability
@@ -36,14 +40,13 @@ const WeightBar: React.FC<{ percent: number; durability?: boolean }> = ({ percen
   return (
     <div className={durability ? 'durability-bar' : 'weight-bar'}>
       <div
+        className={`${durability ? 'durability-bar-fill' : 'weight-bar-fill'} ${stateClass}`}
         style={{
           visibility: percent > 0 ? 'visible' : 'hidden',
-          height: '100%',
           width: `${percent}%`,
           backgroundColor: color,
-          transition: `background ${0.3}s ease, width ${0.3}s ease`,
         }}
-      ></div>
+      />
     </div>
   );
 };

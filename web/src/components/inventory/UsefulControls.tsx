@@ -70,7 +70,6 @@ const UsefulControls: React.FC<Props> = ({ infoVisible, setInfoVisible }) => {
                     <br />
                     {Locale.ui_ctrl_shift_lmb}
                   </p>
-                  <div style={{ textAlign: 'right' }}>🐂</div>
                 </div>
               </div>
             </FloatingFocusManager>

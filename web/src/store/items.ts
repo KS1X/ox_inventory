@@ -9,7 +9,7 @@ export const Items: {
     label: 'VODA',
     stack: true,
     usable: true,
-    count: 0,
+    count: 1,
   },
   burger: {
     name: 'burger',
