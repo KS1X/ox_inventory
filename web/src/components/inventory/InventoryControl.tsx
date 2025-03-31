@@ -62,36 +62,37 @@ const InventoryControl: React.FC = () => {
             aria-label="Item amount"
           />
         </div>
-
+        <div className="inventory-control-button-row">
+        <motion.button className="inventory-control-button inventory-control-button--use" ref={use}>
           <motion.button
-            className="inventory-control-button"
+            className="inventory-control-button inventory-control-button--use"
             ref={use}
             whileTap={{ scale: 0.96 }}
-            whileHover={{ scale: 1.02 }}
           >
             <FontAwesomeIcon icon={faPerson} style={{ marginRight: '8px' }} />
             {Locale.ui_use || 'Use Item'}
           </motion.button>
-
+        </motion.button>
+        <motion.button className="inventory-control-button inventory-control-button--give" ref={give}>
           <motion.button
-            className="inventory-control-button"
+            className="inventory-control-button inventory-control-button--give"
             ref={give}
             whileTap={{ scale: 0.96 }}
-            whileHover={{ scale: 1.02 }}
           >
             <FontAwesomeIcon icon={faGift} style={{ marginRight: '8px' }} />
             {Locale.ui_give || 'Give Item'}
           </motion.button>
-
-          <motion.button
-            className="inventory-control-button"
-            onClick={() => fetchNui('exit')}
-            whileTap={{ scale: 0.96 }}
-            whileHover={{ scale: 1.02 }}
-          >
-            <FontAwesomeIcon icon={faTimes} style={{ marginRight: '8px' }} />
-            {Locale.ui_close || 'Close Inventory'}
-          </motion.button>
+        </motion.button>
+        </div>
+        <motion.button
+          className="inventory-control-button inventory-control-button--close"
+          onClick={() => fetchNui('exit')}
+          whileTap={{ scale: 0.96 }}
+          whileHover={{ scale: 1.03 }}
+        >
+          <FontAwesomeIcon icon={faTimes} style={{ marginRight: '8px' }} />
+          {Locale.ui_close || 'Close Inventory'}
+        </motion.button>
         </div>
       </div>
 

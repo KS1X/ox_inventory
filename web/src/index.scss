@@ -137,6 +137,7 @@ button:active {
 
 .inventory-control {
   display: flex;
+  margin-top: -120px;
 
   .inventory-control-wrapper {
     display: flex;
@@ -147,8 +148,8 @@ button:active {
   }
   .inventory-floating-label {
     position: absolute;
-    left: 8px;
-    top: 32%;
+    left: 10px;
+    top: 30%;
     font-size: 14px;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.5);
@@ -216,25 +217,92 @@ button:active {
   }
 
   .inventory-control-button {
-    font-family: $mainFont;
-    font-size: 16px;
+    flex: 1;
+    padding: 24px 0;
+    font-size: 20px;
     font-weight: 600;
-    color: #fff;
-    background: linear-gradient(145deg, rgba(255,255,255,0.04), rgba(0,0,0,0.1));
+    color: white;
+    border: none;
+    cursor: pointer;
     backdrop-filter: blur(6px);
-    background-color: $secondaryColor;
-    transition: 200ms;
-    padding: 12px 4px;
-    border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.05);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    width: 100%;
-    &:hover {
-      background-color: rgba(184, 253, 220, 0.07);
-    }
-    &:active {
-      transform: scale(0.97);
-    }
+    transition: transform 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+// TOP button (Use Item)
+.inventory-control-button--use {
+  background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(0,0,0,0.08));
+  backdrop-filter: blur(19px);
+  clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+
+  &:hover {
+    background: linear-gradient(to bottom right, #807300, #c4a704);
+    box-shadow: 0 0 12px rgba(194, 161, 14, 0.35);
+    transform: translateY(-2px) scale(1.03);
+  }
+
+  &:active {
+    transform: scale(0.96);
+    box-shadow: 0 0 6px rgba(233, 211, 17, 0.2);
+  }
+}
+
+// BOTTOM button (Give Item)
+.inventory-control-button--give {
+  background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(0,0,0,0.08));
+  backdrop-filter: blur(19px);
+  clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+
+  &:hover {
+    background: linear-gradient(to bottom right, #00aaff, #00d8ff);
+    box-shadow: 0 0 12px rgba(0, 187, 255, 0.35);
+    transform: translateY(-2px) scale(1.03);
+  }
+
+  &:active {
+    transform: scale(0.96);
+    box-shadow: 0 0 6px rgba(0, 174, 255, 0.2);
+  }
+}
+
+.inventory-control-button--close {
+  background: linear-gradient(145deg, #2b2b2b, #1a1a1a);
+  border-radius: 10px;
+  color: #fff;
+  padding: 16px 0;
+  font-size: 18px;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.25s ease;
+  width: 100%;
+
+  &:hover {
+    background: linear-gradient(145deg, #444, #2e2e2e);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
+    transform: scale(1.02);
+  }
+
+  &:active {
+    transform: scale(0.96);
+    background: #1a1a1a;
+    box-shadow: none;
+  }
+}
+
+.inventory-control-button-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
 }
 
 .useful-controls-dialog {
@@ -362,10 +430,11 @@ button:active {
   padding-right: 6px;
 }
 .inventory-owner-label {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 700;
   color: #fff;
   text-align: left;
+  margin-bottom: -24px; // Reduce vertical spacing
 }
 .inventory-grid-container {
   display: grid;
@@ -415,7 +484,7 @@ button:active {
   text-align: center;
   border-bottom-left-radius: 0.25vh;
   border-bottom-right-radius: 0.25vh;
-  border-top-color: rgba(0, 0, 0, 0.2);
+  border-top-color: rgba(255, 255, 255, 0.2);
   border-top-style: inset;
   border-top-width: 1px;
 }
@@ -428,7 +497,7 @@ button:active {
   padding: 2px 3px;
   font-weight: 400;
   font-family: $mainFont;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .inventory-slot-number {
@@ -482,7 +551,7 @@ button:active {
   padding: 3px;
   gap: 3px;
   p {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
@@ -634,7 +703,7 @@ button:active {
 }
 
 .weight-bar {
-  width: min(100%, 466px);
+  width: min(100%, 620px);
   background: rgba(0, 0, 0, 0.4);
   border-radius: 8px;
   overflow: hidden;

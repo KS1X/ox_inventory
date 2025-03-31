@@ -37,7 +37,9 @@ const WeightBar: React.FC<{ percent: number; durability?: boolean }> = ({ percen
   return (
     <div className={durability ? 'durability-bar' : 'weight-bar'}>
       <div
-        className={pulse ? 'weight-bar-fill pulse' : 'weight-bar-fill'}
+        className={`${
+          durability ? 'durability-bar-fill' : 'weight-bar-fill'
+        } ${percent < 15 ? 'low' : percent > 90 && !durability ? 'full' : ''}`}
         style={{
           visibility: percent > 0 ? 'visible' : 'hidden',
           height: '100%',

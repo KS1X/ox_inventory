@@ -15,6 +15,7 @@ import { ItemsPayload } from '../../reducers/refreshSlots';
 import { closeTooltip, openTooltip } from '../../store/tooltip';
 import { openContextMenu } from '../../store/contextMenu';
 import { useMergeRefs } from '@floating-ui/react';
+import { motion } from 'framer-motion';
 
 interface SlotProps {
   inventoryId: Inventory['id'];
@@ -163,10 +164,10 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
                   ? item.weight >= 1000
                     ? `${(item.weight / 1000).toLocaleString('en-us', {
                         minimumFractionDigits: 2,
-                      })}kg `
+                      })}oz `
                     : `${item.weight.toLocaleString('en-us', {
                         minimumFractionDigits: 0,
-                      })}g `
+                      })}oz `
                   : ''}
               </p>
               <p>{item.count ? item.count.toLocaleString('en-us') + `x` : ''}</p>
