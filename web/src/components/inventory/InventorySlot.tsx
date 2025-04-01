@@ -15,7 +15,6 @@ import { ItemsPayload } from '../../reducers/refreshSlots';
 import { closeTooltip, openTooltip } from '../../store/tooltip';
 import { openContextMenu } from '../../store/contextMenu';
 import { useMergeRefs } from '@floating-ui/react';
-import { motion } from 'framer-motion';
 
 interface SlotProps {
   inventoryId: Inventory['id'];

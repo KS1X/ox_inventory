@@ -93,9 +93,8 @@ input[type='number']::-webkit-outer-spin-button {
   }
   &:hover {
     outline: 1.33px solid rgba(255, 255, 255, 0.1);
-    background-color: $secondaryColorHighlight;
+    background-color: #22232c;
     cursor: pointer;
-    transition: background-color 150ms ease, outline 150ms ease;
   }
 }
 
@@ -120,7 +119,6 @@ input[type='number']::-webkit-outer-spin-button {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 7vh;
-  image-rendering: -webkit-optimize-contrast;
   opacity: 0.9;
   filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.363));
 }
@@ -154,7 +152,6 @@ input[type='number']::-webkit-outer-spin-button {
     padding: 4px 4px;
     border: 2.33px solid rgba(255, 255, 255, 0.675);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-    transition: all 200ms ease-in-out;
   
     &:focus-within {
       box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
@@ -204,8 +201,10 @@ input[type='number']::-webkit-outer-spin-button {
     border: none;
     cursor: pointer;
     backdrop-filter: blur(6px);
-    transition: transform 0.2s ease;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: flex; /* Added */
+    justify-content: center; /* Added */
+    align-items: center; /* Added */
   }
 
 // TOP button (Use Item)
@@ -321,9 +320,8 @@ input[type='number']::-webkit-outer-spin-button {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.1);
   fill: rgba(255, 255, 255, 0.85);
-  transition: background-color 200ms ease, transform 200ms ease;
   &:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(223, 42, 42, 0.365);
     transform: scale(1.1);
     cursor: pointer;
   }
@@ -376,7 +374,6 @@ input[type='number']::-webkit-outer-spin-button {
   position: absolute !important;
   bottom: 25px;
   right: 25px;
-  transition: 200ms !important;
   border: none;
   color: white;
   width: 52px;
@@ -455,24 +452,19 @@ input[type='number']::-webkit-outer-spin-button {
   background-color: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(6px) saturate(150%);
   border: 1.33px solid rgba(255, 255, 255, 0.08);
+  border-color: rgba(0, 0, 0, 0.2);
+  border-style: inset;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-  transition: background-color 150ms ease, outline 150ms ease, transform 150ms ease;
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 2.5%;
-  image-rendering: -webkit-optimize-contrast;
   position: relative;
   background-size: 7vh;
   color: $textColor;
-  border-color: rgba(0, 0, 0, 0.2);
-  border-style: inset;
-  border-width: 1px;
   &:hover {
-    background-color: rgba(255, 255, 255, 0.06);
+    background-color: rgba(255, 255, 255, 0.156);
     outline: 1px solid rgba(255, 255, 255, 0.1);
-    transform: scale(1.01);
     cursor: grab;
-    transition: background-color 150ms ease, outline 350ms ease;
   }
   &:active {
     transform: scale(0.98);
@@ -502,7 +494,7 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .inventory-slot-number {
-  background-color: white;
+  background-color: rgb(165, 165, 165);
   color: black;
   height: 12px;
   border-top-left-radius: 0.25vh;
@@ -516,12 +508,6 @@ input[type='number']::-webkit-outer-spin-button {
   border: 1px solid rgba(255, 255, 255, 0.2);
   background-color: rgba(48, 175, 130, 0.08);
   box-shadow: 0 0 0 2px rgba(48, 175, 130, 0.3);
-}
-
-.inventory-slot,
-.hotbar-item-slot,
-.item-notification-item-box {
-  transition: transform 150ms ease;
 }
 
 .item-slot-wrapper {

@@ -10,7 +10,7 @@ import { Locale } from '../../store/locale';
 import UsefulControls from './UsefulControls';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPerson, faGift, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import { motion, AnimatePresence } from 'framer-motion';
+import * as motion from "motion/react-client"
 
 const InventoryControl: React.FC = () => {
   const itemAmount = useAppSelector(selectItemAmount);
@@ -60,32 +60,34 @@ const InventoryControl: React.FC = () => {
           />
         </div>
         <div className="inventory-control-button-row">
-          <motion.button
+          <motion.div
             className="inventory-control-button inventory-control-button--use"
             ref={use}
-            whileTap={{ scale: 0.96 }}
+            whileTap={{ scale: 0.82 }}
+            whileHover={{ scale: 1.02 }}
           >
             <FontAwesomeIcon icon={faPerson} style={{ marginRight: '6px' }} />
             {Locale.ui_use || 'Use'}
-          </motion.button>
-          <motion.button
+          </motion.div>
+          <motion.div
             className="inventory-control-button inventory-control-button--give"
             ref={give}
-            whileTap={{ scale: 0.96 }}
+            whileTap={{ scale: 0.82 }}
+            whileHover={{ scale: 1.02 }}
           >
             <FontAwesomeIcon icon={faGift} style={{ marginRight: '6px' }} />
             {Locale.ui_give || 'Give'}
-          </motion.button>
+          </motion.div>
         </div>
-        <motion.button
+        <motion.div
           className="inventory-control-button inventory-control-button--close"
           onClick={() => fetchNui('exit')}
-          whileTap={{ scale: 0.96 }}
-          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.82 }}
+          whileHover={{ scale: 1.02 }}
         >
           <FontAwesomeIcon icon={faTimes} style={{ marginRight: '8px' }} />
           {Locale.ui_close || 'Close Inventory'}
-        </motion.button>
+        </motion.div>
         </div>
       </div>
 
