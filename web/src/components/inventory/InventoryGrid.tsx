@@ -45,7 +45,7 @@ const InventoryGrid: React.FC<{ inventory: Inventory }> = ({ inventory }) => {
             <p className="inventory-weight-text">
             {inventory.maxWeight && (
               <div className="weight-bar-wrapper">
-                {(weight / 1000).toFixed(1)} / {(inventory.maxWeight / 1000).toFixed(1)} lb
+                {(weight / 1000).toFixed(1)} / {(inventory.maxWeight / 1000).toFixed(1)} Kg
               </div>
             )}
             </p>
