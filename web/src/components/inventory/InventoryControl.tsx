@@ -48,9 +48,6 @@ const InventoryControl: React.FC = () => {
       <div className="inventory-control">
         <div className="inventory-control-wrapper">
         <div className="inventory-control-input-wrapper">
-          <label className="inventory-floating-label" htmlFor="inventory-input">
-            Item Qty.
-          </label>
           <input
             id="inventory-input"
             className="inventory-control-input"
@@ -63,26 +60,22 @@ const InventoryControl: React.FC = () => {
           />
         </div>
         <div className="inventory-control-button-row">
-        <motion.button className="inventory-control-button inventory-control-button--use" ref={use}>
           <motion.button
             className="inventory-control-button inventory-control-button--use"
             ref={use}
             whileTap={{ scale: 0.96 }}
           >
-            <FontAwesomeIcon icon={faPerson} style={{ marginRight: '8px' }} />
-            {Locale.ui_use || 'Use Item'}
+            <FontAwesomeIcon icon={faPerson} style={{ marginRight: '6px' }} />
+            {Locale.ui_use || 'Use'}
           </motion.button>
-        </motion.button>
-        <motion.button className="inventory-control-button inventory-control-button--give" ref={give}>
           <motion.button
             className="inventory-control-button inventory-control-button--give"
             ref={give}
             whileTap={{ scale: 0.96 }}
           >
-            <FontAwesomeIcon icon={faGift} style={{ marginRight: '8px' }} />
-            {Locale.ui_give || 'Give Item'}
+            <FontAwesomeIcon icon={faGift} style={{ marginRight: '6px' }} />
+            {Locale.ui_give || 'Give'}
           </motion.button>
-        </motion.button>
         </div>
         <motion.button
           className="inventory-control-button inventory-control-button--close"

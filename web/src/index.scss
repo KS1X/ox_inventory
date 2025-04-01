@@ -92,7 +92,7 @@ input[type='number']::-webkit-outer-spin-button {
     transform: none;
   }
   &:hover {
-    outline: 1px solid rgba(255, 255, 255, 0.1);
+    outline: 1.33px solid rgba(255, 255, 255, 0.1);
     background-color: $secondaryColorHighlight;
     cursor: pointer;
     transition: background-color 150ms ease, outline 150ms ease;
@@ -107,9 +107,7 @@ input[type='number']::-webkit-outer-spin-button {
   margin: 0;
 }
 
-button:active {
-  transform: scale(0.96);
-}
+
 
 .item-drag-preview {
   width: 7.7vh;
@@ -137,27 +135,14 @@ button:active {
 
 .inventory-control {
   display: flex;
-  margin-top: -120px;
+  margin-top: -80px;
 
   .inventory-control-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 16px;
     justify-content: center;
     align-items: center;
-  }
-  .inventory-floating-label {
-    position: absolute;
-    left: 10px;
-    top: 30%;
-    font-size: 14px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.5);
-    pointer-events: none;
-    z-index: 2;
-    &:hover {
-      color: white;
-    }
   }
 
   .inventory-control-input-wrapper {
@@ -169,7 +154,7 @@ button:active {
     padding: 4px 4px;
     border: 2.33px solid rgba(255, 255, 255, 0.675);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-    transition: all 100ms ease-in-out;
+    transition: all 200ms ease-in-out;
   
     &:focus-within {
       box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
@@ -183,19 +168,17 @@ button:active {
     color: rgba(255, 255, 255, 0.5);
   }
   
-  
   .inventory-control-input {
     flex: 1;
     border: none;
     outline: none;
     font-family: $mainFont;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     color: $textColor;
     background-color: transparent;
     padding: 12px 4px;
     border-radius: 8px;
-    transition: all 150ms ease;
     text-align: center;
       &::placeholder {
         color: transparent;
@@ -208,19 +191,15 @@ button:active {
       &:focus {
         color: white;
       }
-    
-      &:active {
-        transform: scale(0.97);
-      }
     }
   
   }
 
   .inventory-control-button {
     flex: 1;
-    padding: 24px 0;
+    padding: 28px 0;
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 400;
     color: white;
     border: none;
     cursor: pointer;
@@ -233,7 +212,6 @@ button:active {
 .inventory-control-button--use {
   background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(0,0,0,0.08));
   backdrop-filter: blur(19px);
-  clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
   border-top-right-radius: 12px;
   border-top-left-radius: 12px;
   border-bottom-right-radius: 12px;
@@ -243,10 +221,10 @@ button:active {
     background: linear-gradient(to bottom right, #807300, #c4a704);
     box-shadow: 0 0 12px rgba(194, 161, 14, 0.35);
     transform: translateY(-2px) scale(1.03);
+    font-weight: 600;
   }
 
   &:active {
-    transform: scale(0.96);
     box-shadow: 0 0 6px rgba(233, 211, 17, 0.2);
   }
 }
@@ -255,7 +233,6 @@ button:active {
 .inventory-control-button--give {
   background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(0,0,0,0.08));
   backdrop-filter: blur(19px);
-  clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
   border-top-right-radius: 12px;
   border-top-left-radius: 12px;
   border-bottom-right-radius: 12px;
@@ -265,34 +242,31 @@ button:active {
     background: linear-gradient(to bottom right, #00aaff, #00d8ff);
     box-shadow: 0 0 12px rgba(0, 187, 255, 0.35);
     transform: translateY(-2px) scale(1.03);
+    font-weight: 600;
   }
 
   &:active {
-    transform: scale(0.96);
     box-shadow: 0 0 6px rgba(0, 174, 255, 0.2);
   }
 }
 
 .inventory-control-button--close {
-  background: linear-gradient(145deg, #2b2b2b, #1a1a1a);
+  background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(0,0,0,0.08));
+  backdrop-filter: blur(32px);
   border-radius: 10px;
   color: #fff;
   padding: 16px 0;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 400;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: all 0.25s ease;
   width: 100%;
 
   &:hover {
-    background: linear-gradient(145deg, #444, #2e2e2e);
+    background: linear-gradient(145deg, #b31414, #c71d1d);
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
-    transform: scale(1.02);
   }
 
   &:active {
-    transform: scale(0.96);
-    background: #1a1a1a;
     box-shadow: none;
   }
 }
@@ -358,17 +332,6 @@ button:active {
   height: 1px;
   background-color: rgba(255, 255, 255, 0.65);
   animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.5;
-  }
 }
 
 .useful-controls-button {
@@ -763,6 +726,18 @@ button:active {
   }
   100% {
     transform: scaleX(1);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
   }
 }
 
